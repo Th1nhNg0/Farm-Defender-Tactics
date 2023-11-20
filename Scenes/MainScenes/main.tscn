@@ -1,38 +1,32 @@
 [gd_scene load_steps=4 format=3 uid="uid://d3f7y5y7fkqe2"]
 
-[ext_resource type="PackedScene" uid="uid://cjri3m6cpa0ts" path="res://Scenes/Characters/Enemy.tscn" id="1_mdtpx"]
+[ext_resource type="Script" path="res://Scripts/MonsterSpawner.gd" id="2_lru8d"]
 [ext_resource type="PackedScene" uid="uid://b4r2kv38r4lo5" path="res://Scenes/Characters/BaseTower.tscn" id="2_m043f"]
 
 [sub_resource type="Curve2D" id="Curve2D_6x8n7"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 115, 108, 0, 0, 0, 0, 113, 526, 0, 0, 0, 0, 372, 520, 0, 0, 0, 0, 360, 295, 0, 0, 0, 0, 368, 119, 0, 0, 0, 0, 666, 139, 0, 0, 0, 0, 653, 498, 0, 0, 0, 0, 880, 496, 0, 0, 0, 0, 857, 164, 0, 0, 0, 0, 768, 163, 0, 0, 0, 0, 743, 293, 0, 0, 0, 0, 840, 353, 0, 0, 0, 0, 817, 245)
+"points": PackedVector2Array(0, 0, 0, 0, 213, 121, 0, 0, 0, 0, 179, 491, 0, 0, 0, 0, 372, 520, 0, 0, 0, 0, 360, 295, 0, 0, 0, 0, 365, 207, 0, 0, 0, 0, 368, 119, 0, 0, 0, 0, 524, 135, 0, 0, 0, 0, 528, 481, 0, 0, 0, 0, 659, 477, 0, 0, 0, 0, 634, 159, 0, 0, 0, 0, 572, 314, 0, 0, 0, 0, 660, 384, 0, 0, 0, 0, 743, 293, 0, 0, 0, 0, 722, 238, 0, 0, 0, 0, 681, 203, 0, 0, 0, 0, 753, 186, 0, 0, 0, 0, 703, 167)
 }
-point_count = 13
+point_count = 17
 
-[node name="Node2D" type="Node2D"]
+[node name="MainScence" type="Node2D"]
 
 [node name="BaseTower" parent="." instance=ExtResource("2_m043f")]
-position = Vector2(237, 458)
+position = Vector2(183, 210)
 
 [node name="BaseTower2" parent="." instance=ExtResource("2_m043f")]
-position = Vector2(718, 210)
+position = Vector2(179, 371)
+reload_time = 0.2
 
-[node name="Path2D" type="Path2D" parent="."]
+[node name="Track" type="Path2D" parent="."]
+position = Vector2(-99, -50)
 curve = SubResource("Curve2D_6x8n7")
 
-[node name="Enemy" parent="Path2D" instance=ExtResource("1_mdtpx")]
-position = Vector2(115, 108)
-rotation = 1.57558
-SPEED = 50
+[node name="MonsterSpawner" type="Node" parent="." node_paths=PackedStringArray("Track")]
+script = ExtResource("2_lru8d")
+Track = NodePath("../Track")
 
-[node name="Enemy2" parent="Path2D" instance=ExtResource("1_mdtpx")]
-position = Vector2(145, 88)
-rotation = 1.57558
-h_offset = 30.0
-v_offset = -20.0
-SPEED = 70
+[node name="Timer" type="Timer" parent="MonsterSpawner"]
+autostart = true
 
-[node name="Enemy3" parent="Path2D" instance=ExtResource("1_mdtpx")]
-position = Vector2(115, 108)
-rotation = 1.57558
-SPEED = 60
+[connection signal="timeout" from="MonsterSpawner/Timer" to="MonsterSpawner" method="_on_timer_timeout"]
