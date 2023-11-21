@@ -7,7 +7,6 @@
 size = Vector2(14, 6)
 
 [node name="RigidBody2D" type="RigidBody2D"]
-y_sort_enabled = true
 collision_layer = 0
 collision_mask = 0
 gravity_scale = 0.0
@@ -24,6 +23,8 @@ collision_mask = 16
 shape = SubResource("RectangleShape2D_6nn0h")
 
 [node name="World01" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 rotation = 0.785398
 texture = ExtResource("2_5spem")
 hframes = 22

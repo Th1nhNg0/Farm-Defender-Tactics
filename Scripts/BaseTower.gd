@@ -1,15 +1,17 @@
 class_name BaseTower
 extends Node2D
 
-@export var reload_time:float = 0.5
-@export var bullet_speed:int = 10
-@export var bullet_damage:int = 10
+@export var reload_time:float = 1 
+@export var bullet_speed:int = 60
+@export var bullet_damage:int = 5
 
 @onready var timer = $Timer
 @onready var marker_2d = $Marker2D
 
 var BULLET = preload("res://Scenes/Characters/BaseBullet.tscn")
 var enemies:Array[PathFollow2D]=[]
+var can_shoot = true
+
 
 func _ready():
 	timer.wait_time = reload_time
@@ -37,6 +39,8 @@ func get_enemy_with_highest_progress_ratio() -> BaseEnemy:
 	return leader
 
 func _on_timer_timeout():
+	if not can_shoot:
+		return
 	var enemy=get_enemy_with_highest_progress_ratio()
 	if enemy:
 		var new_bullet=BULLET.instantiate()
