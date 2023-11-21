@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmg7cphve3vqm"]
+[gd_scene load_steps=2 format=3 uid="uid://cmg7cphve3vqm"]
 
-[ext_resource type="Texture2D" uid="uid://co2086ke5dlwr" path="res://Assets/Tower_defense_asset_ pack/Base Tileset/world 01.png" id="1_ad1fp"]
-[ext_resource type="Script" path="res://Scripts/TowerPlacement.gd" id="1_tbtyr"]
+[ext_resource type="Script" path="res://Scenes/UI/UI.gd" id="1_2nbed"]
 
 [node name="UI" type="Node"]
+script = ExtResource("1_2nbed")
 metadata/_edit_use_anchors_ = true
 
 [node name="Control" type="Control" parent="."]
@@ -21,20 +21,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="TowerPlacement" type="Panel" parent="Control/MarginContainer"]
-custom_minimum_size = Vector2(32, 32)
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Button" type="Button" parent="Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_tbtyr")
+theme_override_font_sizes/font_size = 10
+text = "New Tower"
 
-[node name="Sprite2D" type="Sprite2D" parent="Control/MarginContainer/TowerPlacement"]
-position = Vector2(16, 16)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("1_ad1fp")
-hframes = 22
-vframes = 5
-frame = 19
-
-[connection signal="gui_input" from="Control/MarginContainer/TowerPlacement" to="Control/MarginContainer/TowerPlacement" method="_on_gui_input"]
+[connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
