@@ -16,9 +16,15 @@ config/features=PackedStringArray("4.1", "Forward Plus")
 
 [display]
 
-window/size/viewport_width=720
-window/size/viewport_height=540
+window/size/viewport_width=352
+window/size/viewport_height=352
+window/size/mode=2
+window/stretch/mode="canvas_items"
 
 [layer_names]
 
 2d_physics/layer_5="Enemy layer"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjri3m6cpa0ts"]
+
+[ext_resource type="Script" path="res://Scripts/BaseEnemy.gd" id="1_w2beo"]
+[ext_resource type="Texture2D" uid="uid://ci3iqvfim2teq" path="res://Assets/Tower_defense_asset_ pack/Enemies/Enemyes.png" id="2_br1su"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ltffb"]
+
+[node name="Enemy" type="PathFollow2D"]
+rotates = false
+cubic_interp = false
+loop = false
+script = ExtResource("1_w2beo")
+HEALTH = 15
+
+[node name="EnemyBody" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBody"]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_ltffb")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+self_modulate = Color(0, 1, 0, 1)
+texture_filter = 1
+offset_left = -8.0
+offset_top = -1.0
+offset_right = 8.0
+offset_bottom = 3.0
+value = 50.0
+show_percentage = false
+
+[node name="Enemyes" type="Sprite2D" parent="."]
+hframes = 3
+vframes = 4
+
+[node name="Enemyes2" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("2_br1su")
+hframes = 3
+vframes = 4
