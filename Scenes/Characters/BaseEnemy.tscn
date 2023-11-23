@@ -10,7 +10,7 @@ rotates = false
 cubic_interp = false
 loop = false
 script = ExtResource("1_w2beo")
-SPEED = 20
+SPEED = 30
 HEALTH = 15
 
 [node name="EnemyBody" type="Area2D" parent="."]

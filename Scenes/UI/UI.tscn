@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmg7cphve3vqm"]
+[gd_scene load_steps=5 format=3 uid="uid://cmg7cphve3vqm"]
 
 [ext_resource type="Script" path="res://Scenes/UI/UI.gd" id="1_2nbed"]
+[ext_resource type="Texture2D" uid="uid://co2086ke5dlwr" path="res://Assets/Tower_defense_asset_ pack/Base Tileset/world 01.png" id="2_mskw8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2t81"]
+atlas = ExtResource("2_mskw8")
+region = Rect2(144, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbjk6"]
+atlas = ExtResource("2_mskw8")
+region = Rect2(144, 128, 16, 16)
 
 [node name="UI" type="Node"]
 script = ExtResource("1_2nbed")
@@ -26,16 +35,62 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
+[node name="Towers Button" type="HBoxContainer" parent="Control/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="Button" type="Button" parent="Control/MarginContainer/HBoxContainer"]
+[node name="Button" type="Button" parent="Control/MarginContainer/Towers Button"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 10
 text = "New Tower"
 
-[connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[node name="Panel" type="Panel" parent="Control/MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Health" type="HBoxContainer" parent="Control/MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/Panel/VBoxContainer/Health"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_v2t81")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/MarginContainer/Panel/VBoxContainer/Health"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+text = "14"
+
+[node name="Gold" type="HBoxContainer" parent="Control/MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/Panel/VBoxContainer/Gold"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_sbjk6")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/MarginContainer/Panel/VBoxContainer/Gold"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+text = "14"
+
+[connection signal="pressed" from="Control/MarginContainer/Towers Button/Button" to="." method="_on_button_pressed"]
