@@ -25,6 +25,7 @@ wait_time = 0.3
 autostart = true
 
 [node name="EnemyInRange" parent="." instance=ExtResource("3_vvj6i")]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInRange"]
 position = Vector2(8, 0)

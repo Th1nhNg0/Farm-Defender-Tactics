@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3f7y5y7fkqe2"]
+[gd_scene load_steps=11 format=3 uid="uid://d3f7y5y7fkqe2"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_4u68o"]
 [ext_resource type="PackedScene" uid="uid://cmg7cphve3vqm" path="res://Scenes/UI/UI.tscn" id="1_vnkuy"]
 [ext_resource type="Texture2D" uid="uid://co2086ke5dlwr" path="res://Assets/Tower_defense_asset_ pack/Base Tileset/world 01.png" id="3_7suyo"]
 [ext_resource type="PackedScene" uid="uid://cjri3m6cpa0ts" path="res://Scenes/Characters/Enemy/BaseEnemy.tscn" id="4_xdvvy"]
 [ext_resource type="PackedScene" uid="uid://b4r2kv38r4lo5" path="res://Scenes/Characters/Towers/BaseTower/BaseTower.tscn" id="5_5wgc0"]
+[ext_resource type="PackedScene" uid="uid://c1s5e4jik546q" path="res://Scenes/Characters/Towers/Placeholder.tscn" id="5_ilxpv"]
 [ext_resource type="Script" path="res://Components/spawn_component.gd" id="5_yc7ll"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7kh6l"]
@@ -320,6 +321,7 @@ point_count = 12
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_4u68o")
+basic_towers = Array[PackedScene]([ExtResource("5_5wgc0")])
 
 [node name="UI" parent="." node_paths=PackedStringArray("GAME_SCENCE") instance=ExtResource("1_vnkuy")]
 GAME_SCENCE = NodePath("..")
@@ -352,6 +354,9 @@ y_sort_enabled = true
 
 [node name="BaseTower" parent="Towers" instance=ExtResource("5_5wgc0")]
 position = Vector2(64, 96)
+
+[node name="Placeholder" parent="." instance=ExtResource("5_ilxpv")]
+position = Vector2(80, 32)
 
 [node name="SpawnComponent" type="Node" parent="." node_paths=PackedStringArray("timer", "spawn_root_node")]
 script = ExtResource("5_yc7ll")

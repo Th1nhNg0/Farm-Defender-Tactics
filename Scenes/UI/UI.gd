@@ -12,6 +12,6 @@ func _process(delta: float) -> void:
 	health_label.text = str(GAME_SCENCE.health)
 	
 func _on_button_pressed() -> void:
-	if not GAME_SCENCE:
+	if not GAME_SCENCE or GAME_SCENCE.money<20:
 		return
 	GAME_SCENCE.active_build_mode()

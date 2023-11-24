@@ -8,7 +8,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rlwmp"]
 
-[node name="Enemy" type="PathFollow2D"]
+[node name="Enemy" type="PathFollow2D" groups=["enemy"]]
 rotates = false
 cubic_interp = false
 loop = false
@@ -40,7 +40,7 @@ Actor = NodePath("..")
 
 [node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 collision_layer = 16
-collision_mask = 16
+collision_mask = 0
 script = ExtResource("4_sg738")
 health_component = NodePath("../HealthComponent")
 

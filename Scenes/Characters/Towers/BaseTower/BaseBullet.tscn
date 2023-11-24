@@ -25,6 +25,7 @@ frame = 61
 script = ExtResource("3_mgekn")
 
 [node name="HitboxComponent2" parent="." instance=ExtResource("5_6hx17")]
+collision_layer = 0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HitboxComponent2"]
 shape = SubResource("RectangleShape2D_n01ly")
