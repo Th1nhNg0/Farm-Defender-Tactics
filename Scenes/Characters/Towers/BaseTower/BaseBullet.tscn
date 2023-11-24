@@ -1,15 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6tbqromi80hy"]
+[gd_scene load_steps=5 format=3 uid="uid://c6tbqromi80hy"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Towers/BaseTower/BaseBullet.gd" id="1_mxawc"]
 [ext_resource type="Texture2D" uid="uid://co2086ke5dlwr" path="res://Assets/Tower_defense_asset_ pack/Base Tileset/world 01.png" id="1_ppcnh"]
-[ext_resource type="Script" path="res://Components/velocity_component.gd" id="3_mgekn"]
 [ext_resource type="PackedScene" uid="uid://cdndxskx0fgv2" path="res://Components/hitbox_component.tscn" id="5_6hx17"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n01ly"]
 size = Vector2(14, 6)
 
-[node name="Bullet" type="CharacterBody2D"]
+[node name="Bullet" type="RigidBody2D"]
+gravity_scale = 0.0
 script = ExtResource("1_mxawc")
+speed = 60
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_n01ly")
@@ -21,11 +22,9 @@ hframes = 22
 vframes = 10
 frame = 61
 
-[node name="VelocityComponent" type="Node" parent="."]
-script = ExtResource("3_mgekn")
-
 [node name="HitboxComponent2" parent="." instance=ExtResource("5_6hx17")]
 collision_layer = 0
+damage_amount = 10.0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HitboxComponent2"]
 shape = SubResource("RectangleShape2D_n01ly")

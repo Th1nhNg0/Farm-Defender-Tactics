@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4r2kv38r4lo5"]
+[gd_scene load_steps=7 format=3 uid="uid://b4r2kv38r4lo5"]
 
+[ext_resource type="Script" path="res://Scenes/Characters/Towers/BaseTower/BaseTower.gd" id="1_b4wha"]
 [ext_resource type="Texture2D" uid="uid://co2086ke5dlwr" path="res://Assets/Tower_defense_asset_ pack/Base Tileset/world 01.png" id="1_jb15d"]
 [ext_resource type="PackedScene" uid="uid://b71etomint41x" path="res://Components/enemy_in_range.tscn" id="3_vvj6i"]
 [ext_resource type="Script" path="res://Components/fire_component.gd" id="4_a48ga"]
@@ -8,24 +9,28 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_uk3lj"]
 radius = 50.0
 
-[node name="BaseTower" type="Node2D"]
+[node name="BaseTower" type="Node2D" groups=["towers"]]
+script = ExtResource("1_b4wha")
+update_towers = null
+sell_price = null
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(8, -2)
+position = Vector2(8, -1)
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(8, -1)
+position = Vector2(8, 0)
 texture = ExtResource("1_jb15d")
 hframes = 22
 vframes = 5
 frame = 19
 
 [node name="ReloadTime" type="Timer" parent="."]
-wait_time = 0.3
 autostart = true
 
 [node name="EnemyInRange" parent="." instance=ExtResource("3_vvj6i")]
+position = Vector2(0, 1)
 collision_layer = 0
+input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInRange"]
 position = Vector2(8, 0)
@@ -37,3 +42,30 @@ timer = NodePath("../ReloadTime")
 enemyInRange = NodePath("../EnemyInRange")
 bullet = ExtResource("5_t0grx")
 fire_position = NodePath("../Marker2D")
+
+[node name="Tooltip" type="HBoxContainer" parent="."]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -17.0
+offset_top = 15.0
+offset_right = 33.0
+offset_bottom = 31.0
+grow_horizontal = 2
+
+[node name="Upgrade" type="Button" parent="Tooltip"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 5
+text = "Upgrade"
+
+[node name="SellBtn" type="Button" parent="Tooltip"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 5
+text = "Sell"
+
+[connection signal="button_up" from="Tooltip/Upgrade" to="." method="_on_upgrade_button_up"]
+[connection signal="button_up" from="Tooltip/SellBtn" to="." method="_on_sell_btn_button_up"]

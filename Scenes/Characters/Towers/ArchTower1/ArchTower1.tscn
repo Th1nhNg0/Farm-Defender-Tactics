@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://djjm7tsa2aqtm"]
+
+[ext_resource type="PackedScene" uid="uid://b4r2kv38r4lo5" path="res://Scenes/Characters/Towers/BaseTower/BaseTower.tscn" id="1_6gx3m"]
+[ext_resource type="PackedScene" uid="uid://d38rqksh4tudm" path="res://Scenes/Characters/Towers/ArchTower1/ArchTower1Bullet.tscn" id="2_73dy5"]
+[ext_resource type="PackedScene" uid="uid://cjh2g8pxcseha" path="res://Scenes/Characters/Towers/ArchTower2/ArchTower2.tscn" id="2_em4lt"]
+
+[node name="ArchTower1" instance=ExtResource("1_6gx3m")]
+tower_id = "arch1"
+update_towers = Array[PackedScene]([ExtResource("2_em4lt")])
+sell_price = 10
+
+[node name="Sprite" parent="." index="1"]
+frame = 17
+
+[node name="FireComponent" parent="." index="4"]
+bullet = ExtResource("2_73dy5")

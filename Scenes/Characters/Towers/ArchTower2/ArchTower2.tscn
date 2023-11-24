@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjh2g8pxcseha"]
+
+[ext_resource type="PackedScene" uid="uid://b4r2kv38r4lo5" path="res://Scenes/Characters/Towers/BaseTower/BaseTower.tscn" id="1_w2nlg"]
+[ext_resource type="PackedScene" uid="uid://wvsld2ysmodu" path="res://Scenes/Characters/Towers/ArchTower2/ArchTower2Bullet.tscn" id="2_0fsaw"]
+[ext_resource type="PackedScene" uid="uid://defwv2vkq8gdx" path="res://Scenes/Characters/Towers/ArchTower3/ArchTower3.tscn" id="2_ydtg0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w0w4i"]
+radius = 70.0
+
+[node name="ArchTower2" instance=ExtResource("1_w2nlg")]
+tower_id = "arch2"
+update_towers = Array[PackedScene]([ExtResource("2_ydtg0")])
+sell_price = 20
+
+[node name="Sprite" parent="." index="1"]
+frame = 18
+
+[node name="ReloadTime" parent="." index="2"]
+wait_time = 0.8
+
+[node name="CollisionShape2D" parent="EnemyInRange" index="0"]
+shape = SubResource("CircleShape2D_w0w4i")
+
+[node name="FireComponent" parent="." index="4"]
+bullet = ExtResource("2_0fsaw")

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d38rqksh4tudm"]
+
+[ext_resource type="PackedScene" uid="uid://c6tbqromi80hy" path="res://Scenes/Characters/Towers/BaseTower/BaseBullet.tscn" id="1_12pxr"]
+
+[node name="Bullet" instance=ExtResource("1_12pxr")]
+
+[node name="HitboxComponent2" parent="." index="2"]
+damage_amount = 8.0

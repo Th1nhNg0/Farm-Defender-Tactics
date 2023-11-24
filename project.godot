@@ -16,6 +16,10 @@ run/main_scene="res://Scenes/MainScenes/main.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://Assets/DALL·E 2023-11-21 20.51.18 - Design a logo for a tower defense game called 'Farm-Defender-Tactics'. The logo should feature stylized, bold lettering for the game title, incorporat.png"
 
+[autoload]
+
+SignalBus="*res://Scripts/SignalBus.gd"
+
 [display]
 
 window/size/viewport_width=352
