@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b71etomint41x"]
+
+[ext_resource type="Script" path="res://Components/enemy_in_range.gd" id="1_ohouh"]
+
+[node name="EnemyInRange" type="Area2D"]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_ohouh")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

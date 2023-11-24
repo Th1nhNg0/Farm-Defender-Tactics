@@ -1,10 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bb02tspo2oj8f"]
+[gd_scene load_steps=2 format=3 uid="uid://cdndxskx0fgv2"]
 
-[ext_resource type="Script" path="res://Components/hitbox_component.gd" id="1_tpqis"]
+[ext_resource type="Script" path="res://Components/hitbox_component.gd" id="1_o2iff"]
 
-[node name="HitboxComponent" type="Area2D"]
+[node name="HitboxComponent2" type="Area2D"]
 collision_layer = 16
 collision_mask = 16
-script = ExtResource("1_tpqis")
+script = ExtResource("1_o2iff")
+damage_amount = 5.0
 
 [connection signal="area_entered" from="." to="." method="_on_hurtbox_entered"]

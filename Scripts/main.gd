@@ -1,13 +1,20 @@
 class_name MainScene
 extends Node2D
 
-@export var BASIC_TOWERS:Array[PackedScene]
-
-
 var money = 40
 var health = 10
 var build_mode = false
+var placeholder
 
+func active_build_mode():
+	if build_mode:
+		return
+	build_mode = true
+#	add_child(temp_tower)
+
+func deactivate_build_mode():
+	build_mode = false
+	
 #func _input(event: InputEvent) -> void:
 #	if not build_mode or not temp_tower:
 #		return

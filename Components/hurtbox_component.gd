@@ -16,6 +16,5 @@ func _ready() -> void:
 
 ## Apply some damage to the [HealthComponent] component.
 func apply_damage(amount: float) -> void:
-	print('hi')
 	health_component.damage(amount)
 	damaged.emit(amount)

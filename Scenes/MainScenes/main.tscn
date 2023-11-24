@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3f7y5y7fkqe2"]
+[gd_scene load_steps=10 format=3 uid="uid://d3f7y5y7fkqe2"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_4u68o"]
 [ext_resource type="PackedScene" uid="uid://cmg7cphve3vqm" path="res://Scenes/UI/UI.tscn" id="1_vnkuy"]
 [ext_resource type="Texture2D" uid="uid://co2086ke5dlwr" path="res://Assets/Tower_defense_asset_ pack/Base Tileset/world 01.png" id="3_7suyo"]
 [ext_resource type="PackedScene" uid="uid://cjri3m6cpa0ts" path="res://Scenes/Characters/Enemy/BaseEnemy.tscn" id="4_xdvvy"]
-[ext_resource type="PackedScene" uid="uid://c6tbqromi80hy" path="res://Scenes/Characters/Towers/BaseTower/Bullet.tscn" id="5_k01st"]
+[ext_resource type="PackedScene" uid="uid://b4r2kv38r4lo5" path="res://Scenes/Characters/Towers/BaseTower/BaseTower.tscn" id="5_5wgc0"]
+[ext_resource type="Script" path="res://Components/spawn_component.gd" id="5_yc7ll"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7kh6l"]
 texture = ExtResource("3_7suyo")
@@ -346,13 +347,16 @@ position = Vector2(2.25806, 5)
 scale = Vector2(0.959677, 0.895833)
 curve = SubResource("Curve2D_c80mg")
 
-[node name="Enemy" parent="EnemyPath" instance=ExtResource("4_xdvvy")]
-position = Vector2(56, 48)
-
 [node name="Towers" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Bullet" parent="Towers" instance=ExtResource("5_k01st")]
-position = Vector2(48, 83)
-collision_layer = 16
-collision_mask = 16
+[node name="BaseTower" parent="Towers" instance=ExtResource("5_5wgc0")]
+position = Vector2(64, 96)
+
+[node name="SpawnComponent" type="Node" parent="." node_paths=PackedStringArray("timer", "spawn_root_node")]
+script = ExtResource("5_yc7ll")
+timer = NodePath("Timer")
+spawn_entity = ExtResource("4_xdvvy")
+spawn_root_node = NodePath("../EnemyPath")
+
+[node name="Timer" type="Timer" parent="SpawnComponent"]

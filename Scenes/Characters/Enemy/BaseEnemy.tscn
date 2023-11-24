@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Components/enemy_movement_component.gd" id="1_omn41"]
 [ext_resource type="Script" path="res://Scenes/Characters/Enemy/BaseEnemy.gd" id="1_oynpi"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="2_hld5u"]
-[ext_resource type="PackedScene" uid="uid://bkuw2cn0my1vu" path="res://Components/hurtbox_component.tscn" id="4_fwsl8"]
+[ext_resource type="Script" path="res://Components/hurtbox_component.gd" id="4_sg738"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rlwmp"]
 
@@ -34,15 +34,19 @@ vframes = 4
 script = ExtResource("2_hld5u")
 max_health = 20.0
 
-[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_fwsl8")]
+[node name="EnemyMovementComponent" type="Node" parent="." node_paths=PackedStringArray("Actor")]
+script = ExtResource("1_omn41")
+Actor = NodePath("..")
+
+[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("4_sg738")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_rlwmp")
 
-[node name="EnemyMovementComponent" type="Node" parent="." node_paths=PackedStringArray("Actor")]
-script = ExtResource("1_omn41")
-Actor = NodePath("..")
-
 [connection signal="changed" from="HealthComponent" to="." method="_on_health_component_changed"]
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
