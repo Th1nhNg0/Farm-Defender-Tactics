@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjri3m6cpa0ts"]
+
+[ext_resource type="Texture2D" uid="uid://ci3iqvfim2teq" path="res://Assets/Tower_defense_asset_ pack/Enemies/Enemyes.png" id="1_gbpkx"]
+[ext_resource type="Script" path="res://Components/enemy_movement_component.gd" id="1_omn41"]
+[ext_resource type="Script" path="res://Scenes/Characters/Enemy/BaseEnemy.gd" id="1_oynpi"]
+[ext_resource type="Script" path="res://Components/health_component.gd" id="2_hld5u"]
+[ext_resource type="PackedScene" uid="uid://bkuw2cn0my1vu" path="res://Components/hurtbox_component.tscn" id="4_fwsl8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rlwmp"]
+
+[node name="Enemy" type="PathFollow2D"]
+rotates = false
+cubic_interp = false
+loop = false
+script = ExtResource("1_oynpi")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+self_modulate = Color(0, 1, 0, 1)
+texture_filter = 1
+offset_left = -8.0
+offset_top = -1.0
+offset_right = 8.0
+offset_bottom = 3.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_gbpkx")
+hframes = 3
+vframes = 4
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_hld5u")
+max_health = 20.0
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_fwsl8")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_rlwmp")
+
+[node name="EnemyMovementComponent" type="Node" parent="." node_paths=PackedStringArray("Actor")]
+script = ExtResource("1_omn41")
+Actor = NodePath("..")
+
+[connection signal="changed" from="HealthComponent" to="." method="_on_health_component_changed"]
